@@ -121,7 +121,7 @@ def build_tags(row: pd.Series, target_region: str, normalized_risk: str) -> list
 class DisruptionInput(BaseModel):
     disruption_type: str
     industry: str = "Automotive"
-    supplier_tier: str
+    supplier_tier: int
     supplier_region: str
     supplier_size: str
     has_backup_supplier: str
@@ -210,6 +210,7 @@ async def get_supplier_recommendations(
             candidates = outside if not outside.empty else candidates
 
         candidates = candidates.copy()
+
         candidates["rating_score"] = (candidates["supplier_rating"] / 5) * 100
         candidates["lead_score"] = ((15 - candidates["lead_time_days"]) / 15 * 100).clip(0, 100)
         candidates["backup_score"] = candidates["backup_capability"].map({"Yes": 100, "No": 0}).fillna(0)
