@@ -1,4 +1,5 @@
-# Supply Chain ET Hackathon
+# SupplyShield
+## Supply Chain ET Hackathon
 
 AI-powered supply chain disruption analysis and alternate supplier recommendation system.
 
