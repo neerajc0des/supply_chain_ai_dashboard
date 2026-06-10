@@ -1,0 +1,21 @@
+supplier_id,country,supplier_tier,supplier_size,backup_capability,supplier_rating,lead_time_days,quality_score,cost_index
+SUP001,India,Tier 1,Large,Yes,4.7,7,90,87
+SUP002,Vietnam,Tier 1,Large,Yes,4.5,8,86,84
+SUP003,Mexico,Tier 1,Large,Yes,4.6,9,88,83
+SUP004,Germany,Tier 1,Large,Yes,4.8,12,94,78
+SUP005,Japan,Tier 1,Large,Yes,4.8,10,93,80
+SUP006,India,Tier 2,Medium,Yes,4.4,6,88,90
+SUP007,Vietnam,Tier 2,Medium,Yes,4.3,7,85,88
+SUP008,Thailand,Tier 2,Medium,Yes,4.2,8,83,86
+SUP009,Poland,Tier 2,Medium,Yes,4.4,10,89,82
+SUP010,Turkey,Tier 2,Medium,No,4.0,11,80,92
+SUP011,Brazil,Tier 3,Small,Yes,3.9,12,78,95
+SUP012,Indonesia,Tier 3,Small,Yes,4.1,9,81,91
+SUP013,Malaysia,Tier 3,Small,Yes,4.2,8,83,89
+SUP014,South Korea,Tier 1,Large,Yes,4.7,7,91,84
+SUP015,Singapore,Tier 1,Large,Yes,4.8,6,95,76
+SUP016,France,Tier 1,Large,Yes,4.6,11,90,79
+SUP017,Spain,Tier 2,Medium,Yes,4.3,10,86,85
+SUP018,Canada,Tier 1,Large,Yes,4.7,8,93,80
+SUP019,USA,Tier 1,Large,Yes,4.8,7,95,75
+SUP020,Australia,Tier 2,Medium,Yes,4.4,9,88,83
