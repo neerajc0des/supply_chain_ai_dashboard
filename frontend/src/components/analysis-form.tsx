@@ -8,7 +8,7 @@ import { toast } from "sonner";
 export interface AnalysisPayload {
     disruption_type: string;
     industry: string;
-    supplier_tier: string;
+    supplier_tier: number;
     supplier_region: string;
     supplier_size: string;
     has_backup_supplier: string;
@@ -28,7 +28,7 @@ export interface AnalysisResult {
 const OPTS = {
     disruption_type: ["Geopolitical", "Natural Disaster", "Pandemic", "Cyber Attack", "Financial", "Regulatory", "Infrastructure"],
     industry: ["Automotive", "Electronics", "Pharmaceuticals", "Aerospace", "Consumer Goods", "Food & Beverage", "Energy"],
-    supplier_tier: ["Tier 1", "Tier 2", "Tier 3", "Tier 4"],
+    supplier_tier: [1,2,3,4],
     supplier_region: ["East Asia", "South Asia", "Southeast Asia", "Europe", "North America", "South America", "Middle East", "Africa"],
     supplier_size: ["Small", "Medium", "Large", "Enterprise"],
     response_type: ["No Action", "Partial Mitigation", "Full Mitigation", "Emergency Response", "Supply Diversification"],
@@ -76,7 +76,7 @@ export function AnalysisForm({ onResult, isLoading, setIsLoading }: Props) {
     const [form, setForm] = useState<AnalysisPayload>({
         disruption_type: "Geopolitical",
         industry: "Automotive",
-        supplier_tier: "Tier 1",
+        supplier_tier: 1,
         supplier_region: "East Asia",
         supplier_size: "Large",
         has_backup_supplier: "No",
@@ -103,7 +103,7 @@ export function AnalysisForm({ onResult, isLoading, setIsLoading }: Props) {
                 if (!res.ok) throw new Error("non-2xx");
                 const data = await res.json();
                 result = data.metrics;
-                // console.log(result)
+                console.log(result)
                 onResult(result);
             } catch {
                 await new Promise(r => setTimeout(r, 800));

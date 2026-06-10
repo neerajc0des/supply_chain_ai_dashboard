@@ -27,7 +27,7 @@ const REGIONS = [
   "Oceania",
 ];
 
-const TIERS = ["Tier 1", "Tier 2", "Tier 3"];
+const TIERS = ["Tier 1", "Tier 2", "Tier 3", "Tier 4"];
 
 const RISKS = ["Low", "Medium", "High", "Critical"];
 
