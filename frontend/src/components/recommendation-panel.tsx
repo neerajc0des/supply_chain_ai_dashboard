@@ -70,8 +70,20 @@ export function RecommendationsPanel() {
     }
   };
 
-  const fieldCls =
-    "bg-[#060c18] border border-white/[0.07] px-3 py-2 text-foreground text-sm focus:outline-none focus:border-[#f59e0b]/40 transition-colors appearance-none w-full";
+  const fieldCls = `
+    bg-background
+    border
+    border-border
+    px-3
+    py-2
+    text-foreground
+    text-sm
+    focus:outline-none
+    focus:border-amber-500/40
+    transition-colors
+    appearance-none
+    w-full
+  `;
 
   return (
     <div className="space-y-5">
@@ -120,7 +132,11 @@ export function RecommendationsPanel() {
               onChange={(e) => setter(e.target.value)}
             >
               {options.map((opt) => (
-                <option key={opt} value={opt}>
+                <option
+                  key={opt}
+                  value={opt}
+                  className="bg-background text-foreground"
+                >
                   {opt}
                 </option>
               ))}
@@ -131,11 +147,25 @@ export function RecommendationsPanel() {
         <button
           onClick={run}
           disabled={loading}
-          className="flex items-center justify-center gap-2 border transition-all disabled:opacity-40 h-[38px]"
+          className="
+            flex
+            items-center
+            justify-center
+            gap-2
+            border
+            transition-all
+            disabled:opacity-40
+            h-9.5
+          "
           style={{
-            background: loading ? "transparent" : "#f59e0b1a",
+            background: loading
+              ? "transparent"
+              : "#f59e0b1a",
+
             borderColor: "#f59e0b50",
+
             color: "#f59e0b",
+
             fontFamily: MONO,
             fontSize: "0.72rem",
             fontWeight: 600,
@@ -144,7 +174,10 @@ export function RecommendationsPanel() {
           }}
         >
           {loading ? (
-            <Loader2 size={12} className="animate-spin" />
+            <Loader2
+              size={12}
+              className="animate-spin"
+            />
           ) : (
             <Search size={12} />
           )}
@@ -167,17 +200,21 @@ export function RecommendationsPanel() {
             return (
               <div
                 key={i}
-                className="border p-4"
+                className="
+                  border
+                  p-4
+                  bg-card
+                "
                 style={{
-                  borderColor: "rgba(255,255,255,0.07)",
+                  borderColor: "var(--border)",
                   borderRadius: "var(--radius)",
-                  background: "rgba(255,255,255,0.02)",
                 }}
               >
                 {/* top row */}
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div>
                     <p
+                      className="text-foreground"
                       style={{
                         fontFamily: MONO,
                         fontSize: "1rem",
@@ -226,92 +263,58 @@ export function RecommendationsPanel() {
 
                 {/* metrics */}
                 <div className="grid grid-cols-3 gap-3 mb-5">
-                  <div
-                    className="p-3"
-                    style={{
-                      background: "rgba(255,255,255,0.03)",
-                      borderRadius: "var(--radius)",
-                    }}
-                  >
-                    <p
-                      className="text-muted-foreground mb-1"
+                  {[
+                    {
+                      label: "SUPPLIER RATING",
+                      value: rec.supplier_rating.toFixed(1),
+                    },
+                    {
+                      label: "LEAD TIME",
+                      value: `${rec.lead_time_days}d`,
+                    },
+                    {
+                      label: "QUALITY SCORE",
+                      value: `${rec.quality_score}%`,
+                    },
+                  ].map((metric) => (
+                    <div
+                      key={metric.label}
+                      className="
+                        p-3
+                        bg-muted/30
+                        border
+                        border-border
+                      "
                       style={{
-                        fontFamily: MONO,
-                        fontSize: "0.62rem",
-                        letterSpacing: "0.06em",
+                        borderRadius: "var(--radius)",
                       }}
                     >
-                      SUPPLIER RATING
-                    </p>
+                      <p
+                        className="
+                          text-muted-foreground
+                          mb-1
+                        "
+                        style={{
+                          fontFamily: MONO,
+                          fontSize: "0.62rem",
+                          letterSpacing: "0.06em",
+                        }}
+                      >
+                        {metric.label}
+                      </p>
 
-                    <p
-                      style={{
-                        fontFamily: MONO,
-                        fontSize: "1rem",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {rec.supplier_rating.toFixed(1)}
-                    </p>
-                  </div>
-
-                  <div
-                    className="p-3"
-                    style={{
-                      background: "rgba(255,255,255,0.03)",
-                      borderRadius: "var(--radius)",
-                    }}
-                  >
-                    <p
-                      className="text-muted-foreground mb-1"
-                      style={{
-                        fontFamily: MONO,
-                        fontSize: "0.62rem",
-                        letterSpacing: "0.06em",
-                      }}
-                    >
-                      LEAD TIME
-                    </p>
-
-                    <p
-                      style={{
-                        fontFamily: MONO,
-                        fontSize: "1rem",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {rec.lead_time_days}d
-                    </p>
-                  </div>
-
-                  <div
-                    className="p-3"
-                    style={{
-                      background: "rgba(255,255,255,0.03)",
-                      borderRadius: "var(--radius)",
-                    }}
-                  >
-                    <p
-                      className="text-muted-foreground mb-1"
-                      style={{
-                        fontFamily: MONO,
-                        fontSize: "0.62rem",
-                        letterSpacing: "0.06em",
-                      }}
-                    >
-                      QUALITY SCORE
-                    </p>
-
-                    <p
-                      style={{
-                        fontFamily: MONO,
-                        fontSize: "1rem",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {rec.quality_score}%
-                    </p>
-                  </div>
+                      <p
+                        className="text-foreground"
+                        style={{
+                          fontFamily: MONO,
+                          fontSize: "1rem",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {metric.value}
+                      </p>
+                    </div>
+                  ))}
                 </div>
 
                 {/* backup capability */}
@@ -322,14 +325,21 @@ export function RecommendationsPanel() {
                       fontFamily: MONO,
                       fontSize: "0.65rem",
                       borderRadius: 2,
+
                       background:
                         rec.backup_capability === "Yes"
                           ? "#34d39920"
                           : "#f8717120",
+
                       color:
                         rec.backup_capability === "Yes"
                           ? "#34d399"
                           : "#f87171",
+
+                      border:
+                        rec.backup_capability === "Yes"
+                          ? "1px solid #34d39950"
+                          : "1px solid #f8717150",
                     }}
                   >
                     {rec.backup_capability === "Yes"
@@ -343,13 +353,18 @@ export function RecommendationsPanel() {
                   {rec.tags.map((tag, j) => (
                     <span
                       key={j}
-                      className="px-2 py-1"
+                      className="
+                        px-2
+                        py-1
+                        border
+                        border-border
+                        bg-muted/30
+                        text-muted-foreground
+                      "
                       style={{
                         fontFamily: MONO,
                         fontSize: "0.65rem",
                         borderRadius: 2,
-                        background: "rgba(255,255,255,0.05)",
-                        color: "#94a3b8",
                       }}
                     >
                       {tag}
@@ -365,7 +380,11 @@ export function RecommendationsPanel() {
       {/* empty state */}
       {!results && !loading && (
         <p
-          className="text-muted-foreground text-center py-6"
+          className="
+            text-muted-foreground
+            text-center
+            py-6
+          "
           style={{
             fontFamily: MONO,
             fontSize: "0.72rem",
